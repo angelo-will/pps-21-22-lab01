@@ -11,7 +11,7 @@ public class SimpleBankAccountWithAtm extends AbstractBankAccount{
     public static final int FEE_TRANSACTION = 1;
 
     public SimpleBankAccountWithAtm(final AccountHolder holder, final double balance) {
-        super(balance, holder);
+        super(holder, balance);
     }
 
     @Override
