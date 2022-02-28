@@ -1,5 +1,4 @@
 import lab01.example.model.AccountHolder;
-import lab01.example.model.BankAccount;
 import lab01.example.model.SimpleBankAccount;
 
 import org.junit.jupiter.api.*;
@@ -8,11 +7,9 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * The test suite for testing the SimpleBankAccount implementation
  */
-class SimpleBankAccountTest {
+class SimpleBankAccountTest extends AbstractBankAccountTest {
 
-    private AccountHolder accountHolder;
-    private BankAccount bankAccount;
-
+    @Override
     @BeforeEach
     void beforeEach(){
         accountHolder = new AccountHolder("Mario", "Rossi", 1);
@@ -20,14 +17,10 @@ class SimpleBankAccountTest {
     }
 
     @Test
-    void testInitialBalance() {
-        assertEquals(0, bankAccount.getBalance());
-    }
-
-    @Test
     void testDeposit() {
-        bankAccount.deposit(accountHolder.getId(), 100);
-        assertEquals(100, bankAccount.getBalance());
+        int initialAmount = 100;
+        bankAccount.deposit(accountHolder.getId(), initialAmount);
+        assertEquals(initialAmount, bankAccount.getBalance());
     }
 
     @Test
