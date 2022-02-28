@@ -56,9 +56,10 @@ class SimpleBankAccountWithAtmTest {
         int initialAmountDeposited = 100;
         int secondAmountDeposited = 50;
         int wrongUserID = 2;
+        int transactionFee = 1;
         bankAccount.depositWithAtm(accountHolder.getId(), initialAmountDeposited);
         bankAccount.depositWithAtm(wrongUserID, secondAmountDeposited);
-        assertEquals(initialAmountDeposited, bankAccount.getBalance());
+        assertEquals(initialAmountDeposited-transactionFee, bankAccount.getBalance());
     }
 
     @Test
@@ -73,5 +74,13 @@ class SimpleBankAccountWithAtmTest {
         bankAccount.deposit(accountHolder.getId(), 100);
         bankAccount.withdraw(2, 70);
         assertEquals(100, bankAccount.getBalance());
+    }
+
+    @Test
+    void testWithdrawWithAtm() {
+        int initialAmountDeposited = 100;
+        bankAccount.depositWithAtm(accountHolder.getId(), initialAmountDeposited);
+        bankAccount.withdrawWithAtm(accountHolder.getId(), 70);
+        assertEquals(30, bankAccount.getBalance());
     }
 }
