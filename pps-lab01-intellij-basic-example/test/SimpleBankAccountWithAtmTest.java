@@ -29,10 +29,18 @@ class SimpleBankAccountWithAtmTest {
     @Test
     void testDeposit() {
         int amountDeposited = 100;
+        bankAccount.deposit(accountHolder.getId(), amountDeposited);
+        assertEquals(amountDeposited, bankAccount.getBalance());
+    }
+
+    @Test
+    void testDepositWithAtm() {
+        int amountDeposited = 100;
         bankAccount.depositWithAtm(accountHolder.getId(), amountDeposited);
         int transactionFee = 1;
         assertEquals(amountDeposited - transactionFee, bankAccount.getBalance());
     }
+
 
     @Test
     void testWrongDeposit() {
