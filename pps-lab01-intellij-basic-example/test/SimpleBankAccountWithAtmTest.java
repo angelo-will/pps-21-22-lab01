@@ -5,9 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * The test suite for testing the SimpleBankAccount implementation
- */
 class SimpleBankAccountWithAtmTest extends AbstractBankAccountTest {
 
     @Override
