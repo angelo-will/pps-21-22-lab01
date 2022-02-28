@@ -8,7 +8,7 @@ package lab01.example.model;
 public class SimpleBankAccountWithAtm extends AbstractBankAccount{
 
 
-    public static final int FEE_TRANSACTION = 1;
+    private static final int FEE_TRANSACTION = 1;
 
     public SimpleBankAccountWithAtm(final AccountHolder holder, final double balance) {
         super(holder, balance);
