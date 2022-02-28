@@ -25,22 +25,30 @@ class SimpleBankAccountTest extends AbstractBankAccountTest {
 
     @Test
     void testWrongDeposit() {
-        bankAccount.deposit(accountHolder.getId(), 100);
-        bankAccount.deposit(2, 50);
-        assertEquals(100, bankAccount.getBalance());
+        int initialAmount = 100;
+        int amountDeposited = 50;
+        int wrongUserID = 2;
+        bankAccount.deposit(accountHolder.getId(), initialAmount);
+        bankAccount.deposit(wrongUserID, amountDeposited);
+        assertEquals(initialAmount, bankAccount.getBalance());
     }
 
     @Test
     void testWithdraw() {
-        bankAccount.deposit(accountHolder.getId(), 100);
-        bankAccount.withdraw(accountHolder.getId(), 70);
-        assertEquals(30, bankAccount.getBalance());
+        int initialAmount = 100;
+        int amountWithdrawn = 70;
+        bankAccount.deposit(accountHolder.getId(), initialAmount);
+        bankAccount.withdraw(accountHolder.getId(), amountWithdrawn);
+        assertEquals(initialAmount-amountWithdrawn, bankAccount.getBalance());
     }
 
     @Test
     void testWrongWithdraw() {
-        bankAccount.deposit(accountHolder.getId(), 100);
-        bankAccount.withdraw(2, 70);
-        assertEquals(100, bankAccount.getBalance());
+        int initialAmount = 100;
+        bankAccount.deposit(accountHolder.getId(), initialAmount);
+        int amountWithdrawn = 70;
+        int wrongUserID = 2;
+        bankAccount.withdraw(wrongUserID, amountWithdrawn);
+        assertEquals(initialAmount, bankAccount.getBalance());
     }
 }
