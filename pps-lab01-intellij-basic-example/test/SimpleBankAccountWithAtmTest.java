@@ -86,4 +86,17 @@ class SimpleBankAccountWithAtmTest {
         bankAccount.withdrawWithAtm(accountHolder.getId(), amountWithdrawn);
         assertEquals(initialAmountDeposited - amountWithdrawn - transactionFee * transactionsMade, bankAccount.getBalance());
     }
+
+    @Test
+    void testWrongWithdrawAtm() {
+        int initialAmountDeposited = 100;
+        int amountWithdrawn = 70;
+        int transactionsMade = 2;
+        int transactionFee = 1;
+        int wrongUserID = 2;
+        bankAccount.depositWithAtm(accountHolder.getId(), initialAmountDeposited);
+        bankAccount.withdrawWithAtm(accountHolder.getId(), amountWithdrawn);
+        bankAccount.withdrawWithAtm(wrongUserID, amountWithdrawn);
+        assertEquals(initialAmountDeposited - amountWithdrawn - transactionFee * transactionsMade, bankAccount.getBalance());
+    }
 }
