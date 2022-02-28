@@ -1,6 +1,7 @@
 import lab01.example.model.AccountHolder;
 import lab01.example.model.BankAccount;
 import lab01.example.model.SimpleBankAccount;
+import lab01.example.model.SimpleBankAccountWithAtm;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,12 +13,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class SimpleBankAccountWithAtmTest {
 
     private AccountHolder accountHolder;
-    private BankAccount bankAccount;
+    private SimpleBankAccountWithAtm bankAccount;
 
     @BeforeEach
     void beforeEach(){
         accountHolder = new AccountHolder("Mario", "Rossi", 1);
-        bankAccount = new SimpleBankAccount(accountHolder, 0);
+        bankAccount = new SimpleBankAccountWithAtm(accountHolder, 0);
     }
 
     @Test
@@ -27,8 +28,10 @@ class SimpleBankAccountWithAtmTest {
 
     @Test
     void testDeposit() {
-        bankAccount.deposit(accountHolder.getId(), 100);
-        assertEquals(100, bankAccount.getBalance());
+        int amountDeposited = 100;
+        bankAccount.depositWithAtm(accountHolder.getId(), amountDeposited);
+        int transactionFee = 1;
+        assertEquals(amountDeposited - transactionFee, bankAccount.getBalance());
     }
 
     @Test
