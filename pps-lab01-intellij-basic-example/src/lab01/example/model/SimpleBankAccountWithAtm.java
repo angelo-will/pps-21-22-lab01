@@ -5,7 +5,7 @@ package lab01.example.model;
  * In particular, a Simple Bank Account allows always the deposit
  * while the withdrawal is allowed only if the balance greater or equal the withdrawal amount
  */
-public class SimpleBankAccountWithAtm extends AbstractBankAccount implements BankAccount {
+public class SimpleBankAccountWithAtm extends AbstractBankAccount{
 
 
     public static final int FEE_TRANSACTION = 1;
