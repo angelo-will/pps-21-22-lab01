@@ -6,10 +6,12 @@ import java.util.Optional;
 
 public class CircularListImpl implements CircularList{
 
-    private List<Integer> list;
+    private final List<Integer> list;
+    private int index;
 
     public CircularListImpl() {
         this.list = new ArrayList<>();
+//        this.index = 0;
     }
 
     @Override
@@ -24,12 +26,12 @@ public class CircularListImpl implements CircularList{
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return this.list.isEmpty();
     }
 
     @Override
     public Optional<Integer> next() {
-        return Optional.empty();
+        return this.isEmpty() ? Optional.empty() : Optional.of(this.list.get(index++));
     }
 
     @Override
