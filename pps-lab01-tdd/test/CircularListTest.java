@@ -31,8 +31,8 @@ public class CircularListTest {
     @Test
     void testSizeAddingMoreElements(){
         int lastNumberToAdd = 4;
-        addToListCrescentNumbers(1, lastNumberToAdd);
-        assertEquals(lastNumberToAdd-1, circularList.size());
+        addToListCrescentNumbers(0, lastNumberToAdd);
+        assertEquals(lastNumberToAdd, circularList.size());
     }
 
 
@@ -85,6 +85,27 @@ public class CircularListTest {
                 .boxed()
                 .sorted(Collections.reverseOrder())
                 .forEach(value -> assertEquals(value, circularList.previous().get()));
+    }
+
+    @Test
+    void testNextAfterReset(){
+        int numberElementsToAdd = 6;
+        addToListCrescentNumbers(0,numberElementsToAdd);
+        IntStream.range(0,4).forEach(x->circularList.next());
+        circularList.reset();
+        IntStream.range(0,numberElementsToAdd).forEach(x-> assertEquals(x,circularList.next().get()));
+    }
+
+    @Test
+    void testPreviousAfterReset(){
+        int numberElementsToAdd = 6;
+        addToListCrescentNumbers(0,numberElementsToAdd);
+        IntStream.range(0,4).forEach(x->circularList.previous());
+        circularList.reset();
+        IntStream.range(0,numberElementsToAdd)
+                .boxed()
+                .sorted(Collections.reverseOrder())
+                .forEach(x-> assertEquals(x,circularList.previous().get()));
     }
 
     private void addToListCrescentNumbers(int firstNumberToAdd, int lastNumberToAdd) {
