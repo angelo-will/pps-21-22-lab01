@@ -3,6 +3,7 @@ import lab01.tdd.CircularListImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.Optional;
 import java.util.stream.IntStream;
 
@@ -28,10 +29,10 @@ public class CircularListTest {
     }
 
     @Test
-    void testSizeAddingMoreElement(){
-        int elementAdded = 4;
-        addToListCrescentNumbers(1, elementAdded);
-        assertEquals(elementAdded, circularList.size());
+    void testSizeAddingMoreElements(){
+        int lastNumberToAdd = 4;
+        addToListCrescentNumbers(1, lastNumberToAdd);
+        assertEquals(lastNumberToAdd-1, circularList.size());
     }
 
 
@@ -52,7 +53,7 @@ public class CircularListTest {
     }
     
     @Test
-    void testNextWithMoreElement(){
+    void testNextWithMoreElements(){
         int numberElementsToAdd = 10;
         addToListCrescentNumbers(1, numberElementsToAdd);
         IntStream.range(1,numberElementsToAdd).forEach(value -> assertEquals(value,circularList.next().get()));
@@ -68,7 +69,17 @@ public class CircularListTest {
         circularList.add(5);
         assertEquals(5,circularList.previous().get());
     }
+
+    @Test
+    void testPreviousWithMoreElements(){
+        int numberElementsToAdd = 5;
+        addToListCrescentNumbers(1,numberElementsToAdd);
+        IntStream.range(1,numberElementsToAdd)
+                .boxed()
+                .sorted(Collections.reverseOrder())
+                .forEach(value -> assertEquals(value,circularList.previous().get()));
+    }
     private void addToListCrescentNumbers(int firstNumberToAdd, int lastNumberToAdd) {
-        IntStream.range(firstNumberToAdd, lastNumberToAdd +1).forEach(e->circularList.add(e));
+        IntStream.range(firstNumberToAdd, lastNumberToAdd).forEach(e->circularList.add(e));
     }
 }
