@@ -3,7 +3,6 @@ package lab01.tdd;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class CircularListImpl implements CircularList{
 
@@ -12,7 +11,6 @@ public class CircularListImpl implements CircularList{
 
     public CircularListImpl() {
         this.list = new ArrayList<>();
-//        this.index = 0;
     }
 
     @Override
@@ -35,16 +33,14 @@ public class CircularListImpl implements CircularList{
         return this.isEmpty() ? Optional.empty() : Optional.of(this.list.get(nextIndex()));
     }
 
-
     @Override
     public Optional<Integer> previous() {
         return this.isEmpty() ? Optional.empty() : Optional.of(this.list.get(prevIndex()));
     }
 
-
     @Override
     public void reset() {
-
+        this.index = 0;
     }
 
     @Override
@@ -53,12 +49,12 @@ public class CircularListImpl implements CircularList{
     }
 
     private int nextIndex() {
-        this.index = index+1 < this.size() ? index : this.size()-1;
+        this.index = index < this.size() ? index : 0;
         return this.index++;
     }
 
     private int prevIndex() {
-        this.index = index-1 >= 0 ? index-1 : this.size()-1;
-        return this.index;
+        this.index = index > 0 ? index : this.size();
+        return --this.index;
     }
 }
