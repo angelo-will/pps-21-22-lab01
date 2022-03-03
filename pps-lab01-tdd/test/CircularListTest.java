@@ -151,6 +151,32 @@ public class CircularListTest {
         assertEquals(elementToAdd, circularList.previous().get());
     }
 
+    @Test
+    void testAddAfterNext(){
+        int firstElementToAdd = 1;
+        int secondElementToAdd = 2;
+        int thirdElementToAdd = 3;
+        circularList.add(firstElementToAdd);
+        assertEquals(firstElementToAdd, circularList.next().get());
+        circularList.add(secondElementToAdd);
+        assertEquals(secondElementToAdd, circularList.next().get());
+        circularList.add(thirdElementToAdd);
+        assertEquals(thirdElementToAdd, circularList.next().get());
+    }
+
+    @Test
+    void testAddAfterPrevious(){
+        int firstElementToAdd = 1;
+        int secondElementToAdd = 2;
+        int thirdElementToAdd = 2;
+        circularList.add(firstElementToAdd);
+        assertEquals(firstElementToAdd, circularList.previous().get());
+        circularList.add(secondElementToAdd);
+        assertEquals(secondElementToAdd, circularList.previous().get());
+        circularList.add(thirdElementToAdd);
+        assertEquals(firstElementToAdd, circularList.previous().get());
+    }
+
     private void addToListCrescentNumbers(int firstNumberToAdd, int lastNumberToAdd) {
         IntStream.range(firstNumberToAdd, lastNumberToAdd).forEach(e->circularList.add(e));
     }
