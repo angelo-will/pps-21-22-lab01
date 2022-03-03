@@ -1,10 +1,9 @@
 import lab01.tdd.CircularList;
 import lab01.tdd.CircularListImpl;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,9 +30,10 @@ public class CircularListTest {
     @Test
     void testSizeAddingMoreElement(){
         int elementAdded = 4;
-        IntStream.range(1,elementAdded+1).forEach(e->circularList.add(e));
+        addToListCrescentNumbers(1, elementAdded);
         assertEquals(elementAdded, circularList.size());
     }
+
 
     @Test
     void testInitialEmptyList(){
@@ -45,4 +45,20 @@ public class CircularListTest {
         assertTrue(circularList.next().isEmpty());
     }
 
+    @Test
+    void testNextWithOneElement(){
+        circularList.add(5);
+        assertEquals(5, (int) circularList.next().get());
+    }
+    
+    @Test
+    void testNextWithMoreElement(){
+        int numberElementsToAdd = 10;
+        addToListCrescentNumbers(1, numberElementsToAdd);
+        IntStream.range(1,numberElementsToAdd).forEach(value -> assertEquals(value,circularList.next().get()));
+    }
+    
+    private void addToListCrescentNumbers(int firstNumberToAdd, int lastNumberToAdd) {
+        IntStream.range(firstNumberToAdd, lastNumberToAdd +1).forEach(e->circularList.add(e));
+    }
 }
