@@ -44,6 +44,7 @@ public class CircularListTest {
     @Test
     void testNextWithEmptyList() {
         assertTrue(circularList.next().isEmpty());
+        assertTrue(circularList.next().isEmpty());
     }
 
     @Test
@@ -54,14 +55,16 @@ public class CircularListTest {
     
     @Test
     void testNextWithMoreElements(){
-        int numberElementsToAdd = 10;
-        addToListCrescentNumbers(1, numberElementsToAdd);
-        IntStream.range(1,numberElementsToAdd).forEach(value -> assertEquals(value,circularList.next().get()));
+        int numberElementsToAdd = 4;
+        addToListCrescentNumbers(0, numberElementsToAdd);
+        IntStream.range(0,numberElementsToAdd).forEach(value -> assertEquals(value,circularList.next().get()));
+        IntStream.range(0,numberElementsToAdd).forEach(value -> assertEquals(value,circularList.next().get()));
     }
 
     @Test
     void testPreviousWithEmptyList(){
-        assertTrue(circularList.isEmpty());
+        assertTrue(circularList.previous().isEmpty());
+        assertTrue(circularList.previous().isEmpty());
     }
 
     @Test
@@ -71,14 +74,19 @@ public class CircularListTest {
     }
 
     @Test
-    void testPreviousWithMoreElements(){
+    void testPreviousWithMoreElements() {
         int numberElementsToAdd = 5;
-        addToListCrescentNumbers(1,numberElementsToAdd);
-        IntStream.range(1,numberElementsToAdd)
+        addToListCrescentNumbers(0, numberElementsToAdd);
+        IntStream.range(0, numberElementsToAdd)
                 .boxed()
                 .sorted(Collections.reverseOrder())
-                .forEach(value -> assertEquals(value,circularList.previous().get()));
+                .forEach(value -> assertEquals(value, circularList.previous().get()));
+        IntStream.range(0, numberElementsToAdd)
+                .boxed()
+                .sorted(Collections.reverseOrder())
+                .forEach(value -> assertEquals(value, circularList.previous().get()));
     }
+
     private void addToListCrescentNumbers(int firstNumberToAdd, int lastNumberToAdd) {
         IntStream.range(firstNumberToAdd, lastNumberToAdd).forEach(e->circularList.add(e));
     }
