@@ -140,7 +140,16 @@ public class CircularListTest {
         assertEquals(thirdElement,circularList.previous().get());
     }
 
-
+    @Test
+    void testAlternatingNextAndPreviousWithOneElementAfterNext() {
+        int elementToAdd = 1;
+        circularList.add(elementToAdd);
+        assertEquals(elementToAdd, circularList.next().get());
+        assertEquals(elementToAdd, circularList.next().get());
+        assertEquals(elementToAdd, circularList.next().get());
+        assertEquals(elementToAdd, circularList.previous().get());
+        assertEquals(elementToAdd, circularList.previous().get());
+    }
 
     private void addToListCrescentNumbers(int firstNumberToAdd, int lastNumberToAdd) {
         IntStream.range(firstNumberToAdd, lastNumberToAdd).forEach(e->circularList.add(e));
