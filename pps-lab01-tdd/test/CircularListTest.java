@@ -57,7 +57,17 @@ public class CircularListTest {
         addToListCrescentNumbers(1, numberElementsToAdd);
         IntStream.range(1,numberElementsToAdd).forEach(value -> assertEquals(value,circularList.next().get()));
     }
-    
+
+    @Test
+    void testPreviousWithEmptyList(){
+        assertTrue(circularList.isEmpty());
+    }
+
+    @Test
+    void testPreviousWithOneElement(){
+        circularList.add(5);
+        assertEquals(5,circularList.previous().get());
+    }
     private void addToListCrescentNumbers(int firstNumberToAdd, int lastNumberToAdd) {
         IntStream.range(firstNumberToAdd, lastNumberToAdd +1).forEach(e->circularList.add(e));
     }
