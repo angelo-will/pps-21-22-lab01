@@ -36,14 +36,13 @@ public class CircularListTest {
     }
 
     @Test
-    void testEmpyList(){
+    void testInitialEmptyList(){
         assertTrue(circularList.isEmpty());
     }
 
-    //TODO: test implementation
-    @Disabled
-    @Test public void testTodo(){
-        Assertions.fail();
+    @Test
+    void testNextWithEmptyList() {
+        assertTrue(circularList.next().isEmpty());
     }
 
 }
